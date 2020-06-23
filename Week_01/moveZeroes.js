@@ -5,7 +5,7 @@
  * 4. 非0值和0交换的条件：当本次循环的值不为0，且i和j不相等时
  */
 
-function moveZeroes (nums) {
+function moveZeroes(nums) {
     let j = 0;
     let value;
     for (let i = 0; i < nums.length; i++) {
