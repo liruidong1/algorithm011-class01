@@ -14,8 +14,7 @@ function removeDuplicates(nums) {
     while (fast < nums.length) {
         //当slow位置和fast位置的值不相等时，slow指针后移一位，并将fast位置的值赋值给slow位置
         if (nums[slow] !== nums[fast]) {
-            ++slow;
-            nums[slow] = nums[fast];
+            nums[++slow] = nums[fast];
         }
         fast++;
     }
