@@ -6,7 +6,7 @@
 
 嵌套循环的遍历
 
-####打卡提交题目
+#### 打卡提交题目
 day1: container-with-most-water
 day2: 3Sum
 day3: rotate-array
@@ -15,8 +15,8 @@ day5: linked-list-cycle-ii
 day6: reverse-nodes-in-k-group
 day6: reverse-nodes-in-k-group
 
-####作业
-#####1. 调用addFirst等新的api
+#### 作业
+##### 1. 调用addFirst等新的api
 ```
     Deque<String> deque = new ArrayDeque<>();
 
@@ -37,7 +37,7 @@ day6: reverse-nodes-in-k-group
     System.out.println(deque);
 ```
 
-#####2. Queue源码分析
+##### 2. Queue源码分析
 Queue在Java中是一个接口，定义了队列的行为，其中add行为等同于offer，区别在于add对于失败的入队操作会抛出异常，而offer只会返回false作为入队失败的标识。
 类似的出队操作有remove和poll，其中remove会在出队失败是抛出异常，而poll会返回null。
 Queue接口中还定义了element和peek两个方法用于查看队首的元素，但是不会出队，对于队首元素为空的情况，element会抛出异常。
