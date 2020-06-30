@@ -13,7 +13,7 @@ class TreeNode {
 
 }
 
-type TreeNodeType = TreeNode | null;
+type TreeNodeType = TreeNode | null | undefined;
 
 /**
  * 解法一 使用递归，该方法的解法思路最简洁明白
@@ -35,3 +35,37 @@ function traversal(root: TreeNodeType,result:number[]){
     }
 }
 
+/**
+ * 解法二 使用迭代
+ * @param root
+ */
+function preorderTraversal2(root: TreeNodeType): number[] {
+    if(!root) return [];
+    let result:number[] = [];
+
+    let rightStack:TreeNode[] = [];
+
+    let cur:TreeNodeType = root;
+    //栈不为空，或者当前节点不为空
+    while (cur || rightStack.length){
+        if(cur){
+            result.push(cur.val);
+            if(cur.right) rightStack.push(cur.right);
+            cur = cur.left ? cur.left : rightStack.length ? rightStack.pop() : null;
+        }else{
+            cur = rightStack.pop();
+        }
+
+    }
+
+    // while (cur){
+    //     result.push(cur.val);
+    //     if(cur.right) rightStack.push(cur.right);
+    //     cur = cur.left;
+    //     if(!cur && rightStack.length){
+    //         cur = rightStack.pop();
+    //     }
+    // }
+
+    return result;
+}
