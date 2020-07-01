@@ -52,7 +52,7 @@
 
 1. day8: valid-anagram
 2. day9: binary-tree-inorder-traversal
-3. day10: rotate-array
+3. day10: ugly-number-ii
 4. day11: merge-sorted-array
 5. day12: linked-list-cycle-ii
 6. day13: reverse-nodes-in-k-group
