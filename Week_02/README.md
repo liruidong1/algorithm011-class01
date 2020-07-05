@@ -46,6 +46,17 @@
         }
     ```
 
+### HashMap
+
+1. 基于jdk1.8进行
+2. `put`方法调用了内部方法`putVal`，在调用`putVal`方法前，先调用`hash`方法获得了对应key的哈希值，然后在
+`putVal`方法中判断空间不足的情况下进行空间的申请或扩容，然后判断目标位置是否被占用，为空的话则在该位置插入新put的
+结点，否则获取目标位置存放的结点`p`，如果`p`的hash值和key与新的结点的hash和key相等，则修改`p`的value即可，否则
+将循环得到链表的下一个节点，循环中需要判断循环结点和新节点的hash及key是否相等，相等的话跳出循环，否则将新节点挂载到尾结点的next指向的位置。
+put完成后会进行容量计算，当size大于某个值时，将进行`reszie`，`resize`方法会对map中的键值对在`table`中进行新的hash下标计算。
+3. `get`方法先调用`hash`方法获取key对应的哈希值，然后调用`getNode`方法进行查询，根据下标找到hash对应的结点，判断该结点的hash和key是否
+等于方法接收到hash和key，相等的话返回该结点，不相等的话判断该结点是否有next结点，进行类似链表方式的遍历，知道找到满足条件的结点然后返回，没找到则
+返回`null`。
 
 
 # 打卡提交题目
@@ -53,7 +64,7 @@
 1. day8: valid-anagram
 2. day9: binary-tree-inorder-traversal
 3. day10: ugly-number-ii
-4. day11: merge-sorted-array
-5. day12: linked-list-cycle-ii
-6. day13: reverse-nodes-in-k-group
-7. day14: sliding-window-maximum
+4. day11: n-ary-tree-postorder-traversal
+5. day12: min-stack
+6. day13: merge-two-sorted-lists
+7. day14: largest-rectangle-in-histogram
