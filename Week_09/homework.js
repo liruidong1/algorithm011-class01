@@ -87,13 +87,13 @@ function uniquePathsWithObstacles1(obstacleGrid) {
 
 function uniquePathsWithObstacles(obstacleGrid) {
 
-    let n = obstacleGrid.length, m = obstacleGrid[0].length;
-    let dp = Array.from({length: m}, (val)=>0)
+    let m = obstacleGrid.length, n = obstacleGrid[0].length;
+    let dp = Array.from({length: n}, (val)=>0)
 
 
     dp[0] = obstacleGrid[0][0] === 0 ? 1 : 0;
-    for (let i = 0; i < n; ++i) {
-        for (let j = 0; j < m; ++j) {
+    for (let i = 0; i < m; ++i) {
+        for (let j = 0; j < n; ++j) {
             if (obstacleGrid[i][j] === 1) {
                 dp[j] = 0;
                 continue;
@@ -104,7 +104,7 @@ function uniquePathsWithObstacles(obstacleGrid) {
         }
     }
 
-    return dp[m - 1];
+    return dp[n - 1];
 }
 
 uniquePathsWithObstacles([[0],[0]]);
