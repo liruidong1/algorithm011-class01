@@ -56,24 +56,55 @@ function reverseStr(s, k) {
  * @param {number[][]} obstacleGrid
  * @return {number}
  */
-function uniquePathsWithObstacles(obstacleGrid) {
+function uniquePathsWithObstacles1(obstacleGrid) {
 
-    let n = obstacleGrid.length, m = obstacleGrid[0].length;
-    let f = Array.from({length: m}, (val)=>0)
+    let m, n;
 
+    if(!obstacleGrid || (m = obstacleGrid.length) < 1 || (n = obstacleGrid[0].length) < 1) return 0;
 
-    f[0] = obstacleGrid[0][0] === 0 ? 1 : 0;
-    for (let i = 0; i < n; ++i) {
-        for (let j = 0; j < m; ++j) {
-            if (obstacleGrid[i][j] === 1) {
-                f[j] = 0;
+    let arr = Array.from({length: m}, ()=>[]);
+
+    for(let i = 0; i < m; i++) {
+        for(let j = 0; j < n; j++) {
+            if(obstacleGrid[i][j] === 1 ) {
+                arr[i][j] = 0;
                 continue;
             }
-            if (j - 1 >= 0 && obstacleGrid[i][j - 1] === 0) {
-                f[j] += f[j - 1];
+            if(i === 0 && j === 0) {
+                arr[i][j] = 1;
+            }else if( i === 0) {
+                arr[i][j] = arr[i][j-1];
+            }else if(j ===  0){
+                arr[i][j] = arr[i-1][j];
+            } else {
+                arr[i][j] = arr[i-1][j] + arr[i][j-1];
             }
         }
     }
 
-    return f[m - 1];
+    return arr[m-1][n-1];
 }
+
+function uniquePathsWithObstacles(obstacleGrid) {
+
+    let n = obstacleGrid.length, m = obstacleGrid[0].length;
+    let dp = Array.from({length: m}, (val)=>0)
+
+
+    dp[0] = obstacleGrid[0][0] === 0 ? 1 : 0;
+    for (let i = 0; i < n; ++i) {
+        for (let j = 0; j < m; ++j) {
+            if (obstacleGrid[i][j] === 1) {
+                dp[j] = 0;
+                continue;
+            }
+            if (j - 1 >= 0) {
+                dp[j] += dp[j - 1];
+            }
+        }
+    }
+
+    return dp[m - 1];
+}
+
+uniquePathsWithObstacles([[0],[0]]);
